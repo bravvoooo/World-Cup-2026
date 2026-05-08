@@ -1,4 +1,5 @@
 import os 
+import time
 import json
 import requests
 from dotenv import load_dotenv
@@ -11,10 +12,18 @@ def fetch_from_api(endpoint_path):
     """Fetch data from the football-data.org API. Returns parsed JSON, or None on 404."""
     url = BASE_URL + "/" + endpoint_path
     headers = {"X-Auth-Token": API_KEY}
-    response = requests.get(url, headers=headers) # The purpose is to make a HTTP request
+    response = requests.get(url, headers=headers)
+    if response.status_code == 429:
+        retry_after = int(response.headers.get("Retry-After", 60))
+        time.sleep(retry_after)
+        response = requests.get(url, headers=headers)
     if response.status_code == requests.codes.not_found:  # 404 means resource doesn't exist — caller decides UX, so return None
         return None
     response.raise_for_status()
+    requests_available = int(response.headers.get("X-Requests-Available-Minute", 100000))
+    if requests_available <= 2:
+        seconds_until_reset = int(response.headers.get("X-RequestCounter-Reset", 60))
+        time.sleep(seconds_until_reset)
     return response.json()
 
 if __name__ == "__main__":
