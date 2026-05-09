@@ -11,7 +11,7 @@ BASE_URL = "https://api.football-data.org/v4"
 def _do_get(url, headers):
     """GET with timeout and network error logging. Re-raises on failure."""
     try:
-        return requests.get(url, headers = headers, timeout = 10)
+        return requests.get(url, headers=headers, timeout = 10)
     except requests.exceptions.RequestException as e:
         print(f"[error] Network request failed: {e}")
         raise
@@ -29,7 +29,7 @@ def fetch_from_api(endpoint_path):
     if response.status_code == requests.codes.not_found:  # 404 means resource doesn't exist — caller decides UX, so return None
         return None
     response.raise_for_status()
-    requests_available = int(response.headers.get("X-Requests-Available-Minute", 100000)) # Added this number as a goof; missing header should not trigger sleep
+    requests_available = int(response.headers.get("X-Requests-Available-Minute", 100000)) # missing header should not trigger sleep
     if requests_available <= 2: # Proactive throttle
         seconds_until_reset = int(response.headers.get("X-RequestCounter-Reset", 60))
         time.sleep(seconds_until_reset)
