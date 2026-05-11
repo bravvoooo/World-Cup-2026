@@ -18,7 +18,18 @@ def _do_get(url, headers):
         print(f"[error] Network request failed: {e}")
         raise
 
-def fetch_from_api(endpoint_path):
+def _refresh_cache(ttl_seconds, endpoint_path, filename):
+    data = _fetch_from_api(endpoint_path)
+    info = {
+        'fetched_at': datetime.now(timezone.utc).isoformat(),
+        'ttl_seconds': ttl_seconds,
+        'data': data
+    }
+    with open(filename, 'w') as file:
+        json.dump(info, file)
+    return data
+
+def _fetch_from_api(endpoint_path):
     """Fetch data from the football-data.org API. Returns parsed JSON, or None on 404."""
     url = BASE_URL + "/" + endpoint_path
     headers = {"X-Auth-Token": API_KEY}
@@ -38,7 +49,7 @@ def fetch_from_api(endpoint_path):
         time.sleep(seconds_until_reset)
     return response.json()
 
-def get_with_cache(cache_key, ttl_seconds, endpoint_path):
+def _get_with_cache(cache_key, ttl_seconds, endpoint_path):
     """Get data from cache if available and not expired, otherwise fetch from API and cache it."""
     '''
         if file exists read it as fetched_at, ttl_seconds, data
@@ -51,17 +62,9 @@ def get_with_cache(cache_key, ttl_seconds, endpoint_path):
         then return the data'''
     folder_location = Path('data/cache')
     filename = folder_location / f'{cache_key}.json'
-    if not filename.exists():
-        data = fetch_from_api(endpoint_path)
-        info = {
-            'fetched_at': datetime.now(timezone.utc).isoformat(),
-            'ttl_seconds': ttl_seconds,
-            'data': data
-        }
-        with open(filename, 'w') as file:
-            json.dump(info, file)
-        return info
-    else:
+    if not filename.exists():       # This is the cache MISS, if the data isn't there to grab, this will run
+        return _refresh_cache(ttl_seconds, endpoint_path, filename)
+    else:       # This is the cache HIT, it will return the already had data
         with open(filename) as file_handle:
             info = json.load(file_handle)
         fetched_at_str = info['fetched_at']
@@ -73,22 +76,22 @@ def get_with_cache(cache_key, ttl_seconds, endpoint_path):
         if age_seconds < ttl:
             return payload
         else:
-            pass
+            return _refresh_cache(ttl_seconds, endpoint_path, filename)
 
 def get_competition():
     """Get the World Cup competition data"""
-    return get_with_cache(cache_key="competition_wc", ttl_seconds=86400, endpoint_path="competitions/WC")
+    return _get_with_cache(cache_key="competition_wc", ttl_seconds=86400, endpoint_path="competitions/WC")
 
 def get_matches():
     """Get the matches for the World Cup"""
-    return get_with_cache(cache_key="matches_wc", ttl_seconds=900, endpoint_path="competitions/WC/matches")
+    return _get_with_cache(cache_key="matches_wc", ttl_seconds=900, endpoint_path="competitions/WC/matches")
 
 def get_standings():
     """Get the standings for the World Cup"""
-    return get_with_cache(cache_key="standings_wc", ttl_seconds=900, endpoint_path="competitions/WC/standings")
+    return _get_with_cache(cache_key="standings_wc", ttl_seconds=900, endpoint_path="competitions/WC/standings")
 
 if __name__ == "__main__":
    start = time.time()
-   print(get_competition())
+   print(get_standings())
    elapsed = time.time() - start
    print(elapsed)
