@@ -1,11 +1,11 @@
 import os 
 import time
 import json
+import datetime
 import requests
 from dotenv import load_dotenv
-from diskcache import Cache
+from pathlib import Path
 
-cache = Cache("api_cache")
 load_dotenv()
 API_KEY = os.getenv("FOOTBALL_DATA_API_KEY")
 BASE_URL = "https://api.football-data.org/v4"
@@ -18,7 +18,6 @@ def _do_get(url, headers):
         print(f"[error] Network request failed: {e}")
         raise
 
-@cache.memoize(expire=86400) # Cache results for 1 day (86,400 seconds)
 def fetch_from_api(endpoint_path):
     """Fetch data from the football-data.org API. Returns parsed JSON, or None on 404."""
     url = BASE_URL + "/" + endpoint_path
@@ -28,6 +27,8 @@ def fetch_from_api(endpoint_path):
         retry_after = int(response.headers.get("Retry-After", 60))
         time.sleep(retry_after)
         response = _do_get(url, headers)
+        if response.status_code == 429:
+            raise requests.exceptions.HTTPError
     if response.status_code == requests.codes.not_found:  # 404 means resource doesn't exist — caller decides UX, so return None
         return None
     response.raise_for_status()
@@ -39,12 +40,27 @@ def fetch_from_api(endpoint_path):
 
 def get_with_cache(cache_key, ttl_seconds, endpoint_path):
     """Get data from cache if available and not expired, otherwise fetch from API and cache it."""
-    cached_data = cache.get(cache_key)
-    if cached_data is not None:
-        return cached_data
-    data = fetch_from_api(endpoint_path)
-    cache.set(cache_key, data, expire=ttl_seconds)
-    return data
+    '''
+        if file exists read it as fetched_at, ttl_seconds, data
+        then calculate the age by subtracting now() - fetched_at
+        if age is less than ttl then returned the cached_data and you are done
+        is the cache data is not found (miss) or the cache is older than it needs to be (stale)
+        then call fetch_from_api
+        wrap the metadata with {fetched_at: now(), ttl_seconds, data}
+        write it to the write .json file
+        then return the data'''
+    folder_location = Path('data/cache')
+    filename = folder_location / f'{cache_key}.json'
+    if not filename.exists:
+        data = fetch_from_api(endpoint_path)
+        with open(filename, 'w') as file:
+            json.dump(data, file)
+    else:
+        with open(filename) as file_handle:
+            data = json.load(file_handle)
+            age = datetime.now() - int(data.get('fetched_at'))
+            if age <= ttl_seconds:
+                return data.get('data')
 
 def get_competition():
     """Get the World Cup competition data"""
@@ -59,15 +75,7 @@ def get_standings():
     return get_with_cache(cache_key="standings_wc", ttl_seconds=900, endpoint_path="competitions/WC/standings")
 
 if __name__ == "__main__":
-    # Test 1: happy path
-    print("Test 1 - happy path:")
-    data = fetch_from_api("competitions/WC")
-    print(f"  {data['name']}")
-    # Test 3: 404 path
-    print("Test 3 - 404 returns None:")
-    result = fetch_from_api("competitions/WC/matches/99999999")
-    print(f"  {result}")
-
-    # Test 2 LAST because it raises and stops execution
-    print("Test 2 - 400 raises:")
-    fetch_from_api("competitions/NOT_REAL")
+   start = time.time()
+   print(get_competition())
+   elapsed = time.time() - start
+   print(elapsed)
