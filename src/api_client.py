@@ -1,7 +1,7 @@
 import os 
 import time
 import json
-import datetime
+from datetime import datetime, timezone, timedelta
 import requests
 from dotenv import load_dotenv
 from pathlib import Path
@@ -51,16 +51,29 @@ def get_with_cache(cache_key, ttl_seconds, endpoint_path):
         then return the data'''
     folder_location = Path('data/cache')
     filename = folder_location / f'{cache_key}.json'
-    if not filename.exists:
+    if not filename.exists():
         data = fetch_from_api(endpoint_path)
+        info = {
+            'fetched_at': datetime.now(timezone.utc).isoformat(),
+            'ttl_seconds': ttl_seconds,
+            'data': data
+        }
         with open(filename, 'w') as file:
-            json.dump(data, file)
+            json.dump(info, file)
+        return info
     else:
         with open(filename) as file_handle:
-            data = json.load(file_handle)
-            age = datetime.now() - int(data.get('fetched_at'))
-            if age <= ttl_seconds:
-                return data.get('data')
+            info = json.load(file_handle)
+        fetched_at_str = info['fetched_at']
+        ttl = info['ttl_seconds']
+        payload = info['data']
+        fetched_at = datetime.fromisoformat(fetched_at_str)
+        age = datetime.now(timezone.utc) - fetched_at
+        age_seconds = age.total_seconds()
+        if age_seconds < ttl:
+            return payload
+        else:
+            pass
 
 def get_competition():
     """Get the World Cup competition data"""
