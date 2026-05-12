@@ -29,7 +29,7 @@ def _refresh_cache(ttl_seconds, endpoint_path, filename):
         json.dump(info, file)
     return data
 
-def _fetch_from_api(endpoint_path):
+def _fetch_from_api(endpoint_path: str):
     """Fetch data from the football-data.org API. Returns parsed JSON, or None on 404."""
     url = BASE_URL + "/" + endpoint_path
     headers = {"X-Auth-Token": API_KEY}
@@ -49,7 +49,7 @@ def _fetch_from_api(endpoint_path):
         time.sleep(seconds_until_reset)
     return response.json()
 
-def _get_with_cache(cache_key, ttl_seconds, endpoint_path):
+def _get_with_cache(cache_key: str, ttl_seconds: int, endpoint_path: str):
     """Get data from cache if available and not expired, otherwise fetch from API and cache it."""
     folder_location = Path('data/cache')
     folder_location.mkdir(parents=True, exist_ok=True)

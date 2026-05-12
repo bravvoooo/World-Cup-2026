@@ -21,6 +21,3 @@ def print_group_matches(parsed_matches, group_letter: str):
             print(match['home'], match['away'], match['kickoff'], match['score'], match['matchday'])
 
 if __name__ == "__main__":
-    raw = get_matches()
-    parsed = parse_matches(raw['matches'])
-    print_group_matches(parsed, 'A')
