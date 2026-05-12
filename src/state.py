@@ -15,12 +15,12 @@ def parse_matches(rawlist):
         }
     return matches_key
 
+def print_group_matches(parsed_matches, group_letter: str):
+    for match_id, match in parsed_matches.items():
+        if match['group'] == group_letter:
+            print(match['home'], match['away'], match['kickoff'], match['score'], match['matchday'])
+
 if __name__ == "__main__":
     raw = get_matches()
     parsed = parse_matches(raw['matches'])
-    
-    # Find a knockout match and print it
-    for match_id, match_data in parsed.items():
-        if match_data['stage'] != 'GROUP_STAGE':
-            print(match_id, match_data)
-            break
+    print_group_matches(parsed, 'A')
