@@ -51,16 +51,8 @@ def _fetch_from_api(endpoint_path):
 
 def _get_with_cache(cache_key, ttl_seconds, endpoint_path):
     """Get data from cache if available and not expired, otherwise fetch from API and cache it."""
-    '''
-        if file exists read it as fetched_at, ttl_seconds, data
-        then calculate the age by subtracting now() - fetched_at
-        if age is less than ttl then returned the cached_data and you are done
-        is the cache data is not found (miss) or the cache is older than it needs to be (stale)
-        then call fetch_from_api
-        wrap the metadata with {fetched_at: now(), ttl_seconds, data}
-        write it to the write .json file
-        then return the data'''
     folder_location = Path('data/cache')
+    folder_location.mkdir(parents=True, exist_ok=True)
     filename = folder_location / f'{cache_key}.json'
     if not filename.exists():       # This is the cache MISS, if the data isn't there to grab, this will run
         return _refresh_cache(ttl_seconds, endpoint_path, filename)
@@ -91,7 +83,6 @@ def get_standings():
     return _get_with_cache(cache_key="standings_wc", ttl_seconds=900, endpoint_path="competitions/WC/standings")
 
 if __name__ == "__main__":
-   start = time.time()
-   print(get_standings())
-   elapsed = time.time() - start
-   print(elapsed)
+    result = get_matches()
+    first_item = result.get("matches", [None])[0]
+    print(first_item)
