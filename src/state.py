@@ -53,6 +53,35 @@ def build_standings(parsed_matches):
             team['pts'] = team['W'] * 3 + team['D'] * 1
     return groups
         
+def build_tournament(parsed_matches, competition_meta):
+    groups = build_standings(parsed_matches)
+    knockout = {
+        'round_of_32': [],
+        'round_of_16': [],
+        'quarter_finals': [],
+        'semi_finals': [],
+        'final': {}
+    }
+    competition = competition_meta['name']
+    season = competition_meta['currentSeason']['startDate'][:4]
+    tournament = {
+        'competition': competition,
+        'season': season, 
+        'last_updated': None, #save_tournament updates this
+        'groups': groups,
+        'matches': parsed_matches,
+        'knockout': knockout
+    }
+    return tournament
 
 if __name__ == "__main__":
-    pass
+    from api_client import get_matches, get_competition  # or whatever your competition fetch is called
+    
+    raw_matches = get_matches()
+    parsed = parse_matches(raw_matches['matches'])
+    meta = get_competition()  # adjust to your actual function name
+    
+    tournament = build_tournament(parsed, meta)
+    print(tournament['competition'])
+    print(tournament['season'])
+    print(list(tournament.keys()))  # should print all 6 keys
