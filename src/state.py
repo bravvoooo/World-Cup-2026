@@ -1,4 +1,7 @@
-from api_client import get_matches
+import json
+from pathlib import Path
+from datetime import datetime, timezone
+from api_client import get_matches, get_competition
 
 def parse_matches(rawlist):
     matches_key = {}
@@ -74,14 +77,28 @@ def build_tournament(parsed_matches, competition_meta):
     }
     return tournament
 
+def save_tournament(tournament, path):
+    '''`save_tournament` pseudocode
+    Input
+    * `tournament`: the dict returned by `build_tournament()`
+    * (optional) `path`:  `data/tournament.json`
+
+    Output
+    * Nothing returned (or returns the path written, your call). Side effect: file on disk.
+
+    Logic
+    1. Stamp `last_updated` on the tournament dict with the current date and time in isoformat.
+    2. Make sure the directory exists — if `data/` doesn't exist yet, from path you .mkdir() it.
+    3. Open the file at `path` in writing mode.
+    4. Write the tournament dict to the file using dump function from json module.
+    5. (Optional) to make it human readable add indent = 4'''
+    tournament['last_updated'] = datetime.now(timezone.utc).isoformat()
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    with open(path, 'w') as file:
+        json.dump(tournament, file, indent=4)
+    
+    
+
+
 if __name__ == "__main__":
-    from api_client import get_matches, get_competition  # or whatever your competition fetch is called
-    
-    raw_matches = get_matches()
-    parsed = parse_matches(raw_matches['matches'])
-    meta = get_competition()  # adjust to your actual function name
-    
-    tournament = build_tournament(parsed, meta)
-    print(tournament['competition'])
-    print(tournament['season'])
-    print(list(tournament.keys()))  # should print all 6 keys
+    save_tournament(build_tournament(parse_matches(get_matches()), get_competition()), 'data/tournament.json')

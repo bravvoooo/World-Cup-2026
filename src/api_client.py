@@ -76,7 +76,8 @@ def get_competition():
 
 def get_matches():
     """Get the matches for the World Cup"""
-    return _get_with_cache(cache_key="matches_wc", ttl_seconds=900, endpoint_path="competitions/WC/matches")
+    response = _get_with_cache(cache_key="matches_wc", ttl_seconds=900, endpoint_path="competitions/WC/matches")
+    return response['matches']
 
 def get_standings():
     """Get the standings for the World Cup"""
