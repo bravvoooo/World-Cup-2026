@@ -101,22 +101,6 @@ def get_team(tournament: dict, country_code: str):
     raise KeyError(f'Team {country_code} not found in tournament.')
 
 def get_today(tournament: dict, todays_date: date = None):
-    '''#get_todays_matchs
-    Input 
-    tournament, the full tournament dict 
-    there will actually not be a todays_date arg because i dont have a use case for it
-    
-    Output
-    Matches that play today and can be seen in order of time
-    
-    Logic
-    create a variable that holds todays date 
-    for each match
-    parse the kickoff to a UTC datetime
-    Convert the timezone from utc to 'America/NewYork' with zoneinfo
-    and if the local date is equal to todays date, keep it 
-    sort the keepers by kickoff time
-    return sorted list of (match_id, match_dict) match tuples'''
     if todays_date is None:
         todays_date = datetime.now(ZoneInfo('America/New_York')).date()
     keepers = []
