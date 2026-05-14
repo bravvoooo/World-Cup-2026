@@ -1,8 +1,9 @@
 import json
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timezone, date, UTC
 from api_client import get_matches, get_competition
 from pprint import pprint
+from zoneinfo import ZoneInfo
 
 def parse_matches(rawlist):
     matches_key = {}
@@ -99,7 +100,37 @@ def get_team(tournament: dict, country_code: str):
             return group['teams'][country_code]
     raise KeyError(f'Team {country_code} not found in tournament.')
 
+def get_today(tournament: dict, todays_date: date = None):
+    '''#get_todays_matchs
+    Input 
+    tournament, the full tournament dict 
+    there will actually not be a todays_date arg because i dont have a use case for it
+    
+    Output
+    Matches that play today and can be seen in order of time
+    
+    Logic
+    create a variable that holds todays date 
+    for each match
+    parse the kickoff to a UTC datetime
+    Convert the timezone from utc to 'America/NewYork' with zoneinfo
+    and if the local date is equal to todays date, keep it 
+    sort the keepers by kickoff time
+    return sorted list of (match_id, match_dict) match tuples'''
+    if todays_date is None:
+        todays_date = datetime.now(ZoneInfo('America/New_York')).date()
+    keepers = []
+    for match_id, match_data in tournament['matches'].items():
+        kickoff = match_data['kickoff']
+        utc_kickoff = datetime.fromisoformat(kickoff)
+        local_kickoff = utc_kickoff.astimezone(ZoneInfo('America/New_York'))
+        local_date = local_kickoff.date()
+        if todays_date == local_date:
+            keepers.append((match_id, local_kickoff, match_data))
+    keepers.sort(key=lambda x: x[1])
+    return keepers
+
 if __name__ == "__main__":
 #    save_tournament(build_tournament(parse_matches(get_matches()), get_competition()), 'data/tournament.json')
     loaded = load_tournament('data/tournament.json')
-    print(get_team(loaded, 'ABC'))
+    print(get_today(loaded, date(2024, 7, 2)))
