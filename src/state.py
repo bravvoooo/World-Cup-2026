@@ -93,9 +93,13 @@ def get_group_table(tournament:dict, letter: str):
     sorted_teams = sorted(teams.values(), key=lambda x: (-x['pts'], -x['GD'], -x['GF']))
     return sorted_teams
 
+def get_team(tournament: dict, country_code: str):
+    for group in tournament['groups'].values():
+        if country_code in group['teams']:
+            return group['teams'][country_code]
+    raise KeyError(f'Team {country_code} not found in tournament.')
 
 if __name__ == "__main__":
-    save_tournament(build_tournament(parse_matches(get_matches()), get_competition()), 'data/tournament.json')
+#    save_tournament(build_tournament(parse_matches(get_matches()), get_competition()), 'data/tournament.json')
     loaded = load_tournament('data/tournament.json')
-    loaded = load_tournament('data/tournament.json')
-    pprint(get_group_table(loaded, 'A'))
+    print(get_team(loaded, 'ABC'))

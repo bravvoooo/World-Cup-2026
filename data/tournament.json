@@ -1,1360 +1,960 @@
 {
-    "competition": "FIFA World Cup",
-    "season": "2026",
-    "last_updated": "2026-05-13T19:07:51.056820+00:00",
-    "groups": {},
+    "competition": "European Championship",
+    "season": "2024",
+    "last_updated": "2026-05-14T02:44:31.576264+00:00",
+    "groups": {
+        "A": {
+            "teams": {
+                "GER": {
+                    "tla": "GER",
+                    "played": 3,
+                    "W": 2,
+                    "D": 1,
+                    "L": 0,
+                    "GF": 8,
+                    "GA": 2,
+                    "GD": 6,
+                    "pts": 7
+                },
+                "SCO": {
+                    "tla": "SCO",
+                    "played": 3,
+                    "W": 0,
+                    "D": 1,
+                    "L": 2,
+                    "GF": 2,
+                    "GA": 7,
+                    "GD": -5,
+                    "pts": 1
+                },
+                "HUN": {
+                    "tla": "HUN",
+                    "played": 3,
+                    "W": 1,
+                    "D": 0,
+                    "L": 2,
+                    "GF": 2,
+                    "GA": 5,
+                    "GD": -3,
+                    "pts": 3
+                },
+                "SUI": {
+                    "tla": "SUI",
+                    "played": 3,
+                    "W": 1,
+                    "D": 2,
+                    "L": 0,
+                    "GF": 5,
+                    "GA": 3,
+                    "GD": 2,
+                    "pts": 5
+                }
+            }
+        },
+        "B": {
+            "teams": {
+                "ESP": {
+                    "tla": "ESP",
+                    "played": 3,
+                    "W": 3,
+                    "D": 0,
+                    "L": 0,
+                    "GF": 5,
+                    "GA": 0,
+                    "GD": 5,
+                    "pts": 9
+                },
+                "CRO": {
+                    "tla": "CRO",
+                    "played": 3,
+                    "W": 0,
+                    "D": 2,
+                    "L": 1,
+                    "GF": 3,
+                    "GA": 6,
+                    "GD": -3,
+                    "pts": 2
+                },
+                "ITA": {
+                    "tla": "ITA",
+                    "played": 3,
+                    "W": 1,
+                    "D": 1,
+                    "L": 1,
+                    "GF": 3,
+                    "GA": 3,
+                    "GD": 0,
+                    "pts": 4
+                },
+                "ALB": {
+                    "tla": "ALB",
+                    "played": 3,
+                    "W": 0,
+                    "D": 1,
+                    "L": 2,
+                    "GF": 3,
+                    "GA": 5,
+                    "GD": -2,
+                    "pts": 1
+                }
+            }
+        },
+        "D": {
+            "teams": {
+                "POL": {
+                    "tla": "POL",
+                    "played": 3,
+                    "W": 0,
+                    "D": 1,
+                    "L": 2,
+                    "GF": 3,
+                    "GA": 6,
+                    "GD": -3,
+                    "pts": 1
+                },
+                "NED": {
+                    "tla": "NED",
+                    "played": 3,
+                    "W": 1,
+                    "D": 1,
+                    "L": 1,
+                    "GF": 4,
+                    "GA": 4,
+                    "GD": 0,
+                    "pts": 4
+                },
+                "AUT": {
+                    "tla": "AUT",
+                    "played": 3,
+                    "W": 2,
+                    "D": 0,
+                    "L": 1,
+                    "GF": 6,
+                    "GA": 4,
+                    "GD": 2,
+                    "pts": 6
+                },
+                "FRA": {
+                    "tla": "FRA",
+                    "played": 3,
+                    "W": 1,
+                    "D": 2,
+                    "L": 0,
+                    "GF": 2,
+                    "GA": 1,
+                    "GD": 1,
+                    "pts": 5
+                }
+            }
+        },
+        "C": {
+            "teams": {
+                "SVN": {
+                    "tla": "SVN",
+                    "played": 3,
+                    "W": 0,
+                    "D": 3,
+                    "L": 0,
+                    "GF": 2,
+                    "GA": 2,
+                    "GD": 0,
+                    "pts": 3
+                },
+                "DEN": {
+                    "tla": "DEN",
+                    "played": 3,
+                    "W": 0,
+                    "D": 3,
+                    "L": 0,
+                    "GF": 2,
+                    "GA": 2,
+                    "GD": 0,
+                    "pts": 3
+                },
+                "SRB": {
+                    "tla": "SRB",
+                    "played": 3,
+                    "W": 0,
+                    "D": 2,
+                    "L": 1,
+                    "GF": 1,
+                    "GA": 2,
+                    "GD": -1,
+                    "pts": 2
+                },
+                "ENG": {
+                    "tla": "ENG",
+                    "played": 3,
+                    "W": 1,
+                    "D": 2,
+                    "L": 0,
+                    "GF": 2,
+                    "GA": 1,
+                    "GD": 1,
+                    "pts": 5
+                }
+            }
+        },
+        "E": {
+            "teams": {
+                "ROU": {
+                    "tla": "ROU",
+                    "played": 3,
+                    "W": 1,
+                    "D": 1,
+                    "L": 1,
+                    "GF": 4,
+                    "GA": 3,
+                    "GD": 1,
+                    "pts": 4
+                },
+                "UKR": {
+                    "tla": "UKR",
+                    "played": 3,
+                    "W": 1,
+                    "D": 1,
+                    "L": 1,
+                    "GF": 2,
+                    "GA": 4,
+                    "GD": -2,
+                    "pts": 4
+                },
+                "BEL": {
+                    "tla": "BEL",
+                    "played": 3,
+                    "W": 1,
+                    "D": 1,
+                    "L": 1,
+                    "GF": 2,
+                    "GA": 1,
+                    "GD": 1,
+                    "pts": 4
+                },
+                "SVK": {
+                    "tla": "SVK",
+                    "played": 3,
+                    "W": 1,
+                    "D": 1,
+                    "L": 1,
+                    "GF": 3,
+                    "GA": 3,
+                    "GD": 0,
+                    "pts": 4
+                }
+            }
+        },
+        "F": {
+            "teams": {
+                "TUR": {
+                    "tla": "TUR",
+                    "played": 3,
+                    "W": 2,
+                    "D": 0,
+                    "L": 1,
+                    "GF": 5,
+                    "GA": 5,
+                    "GD": 0,
+                    "pts": 6
+                },
+                "GEO": {
+                    "tla": "GEO",
+                    "played": 3,
+                    "W": 1,
+                    "D": 1,
+                    "L": 1,
+                    "GF": 4,
+                    "GA": 4,
+                    "GD": 0,
+                    "pts": 4
+                },
+                "POR": {
+                    "tla": "POR",
+                    "played": 3,
+                    "W": 2,
+                    "D": 0,
+                    "L": 1,
+                    "GF": 5,
+                    "GA": 3,
+                    "GD": 2,
+                    "pts": 6
+                },
+                "CZE": {
+                    "tla": "CZE",
+                    "played": 3,
+                    "W": 0,
+                    "D": 1,
+                    "L": 2,
+                    "GF": 3,
+                    "GA": 5,
+                    "GD": -2,
+                    "pts": 1
+                }
+            }
+        }
+    },
     "matches": {
-        "537327": {
-            "home": "MEX",
-            "away": "RSA",
-            "kickoff": "2026-06-11T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "A",
-            "matchday": 1
-        },
-        "537328": {
-            "home": "KOR",
-            "away": "CZE",
-            "kickoff": "2026-06-12T02:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "A",
-            "matchday": 1
-        },
-        "537333": {
-            "home": "CAN",
-            "away": "BIH",
-            "kickoff": "2026-06-12T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "B",
-            "matchday": 1
-        },
-        "537345": {
-            "home": "USA",
-            "away": "PAR",
-            "kickoff": "2026-06-13T01:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "D",
-            "matchday": 1
-        },
-        "537334": {
-            "home": "QAT",
-            "away": "SUI",
-            "kickoff": "2026-06-13T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "B",
-            "matchday": 1
-        },
-        "537339": {
-            "home": "BRA",
-            "away": "MAR",
-            "kickoff": "2026-06-13T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "C",
-            "matchday": 1
-        },
-        "537340": {
-            "home": "HAI",
+        "428747": {
+            "home": "GER",
             "away": "SCO",
-            "kickoff": "2026-06-14T01:00:00Z",
-            "status": "TIMED",
+            "kickoff": "2024-06-14T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 5,
+                "away": 1
             },
             "stage": "GROUP_STAGE",
-            "group": "C",
+            "group": "A",
             "matchday": 1
         },
-        "537346": {
-            "home": "AUS",
-            "away": "TUR",
-            "kickoff": "2026-06-14T04:00:00Z",
-            "status": "TIMED",
+        "428746": {
+            "home": "HUN",
+            "away": "SUI",
+            "kickoff": "2024-06-15T13:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 3
             },
             "stage": "GROUP_STAGE",
-            "group": "D",
+            "group": "A",
             "matchday": 1
         },
-        "537351": {
-            "home": "GER",
-            "away": "CUR",
-            "kickoff": "2026-06-14T17:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "E",
-            "matchday": 1
-        },
-        "537357": {
-            "home": "NED",
-            "away": "JPN",
-            "kickoff": "2026-06-14T20:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "F",
-            "matchday": 1
-        },
-        "537352": {
-            "home": "CIV",
-            "away": "ECU",
-            "kickoff": "2026-06-14T23:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "E",
-            "matchday": 1
-        },
-        "537358": {
-            "home": "SWE",
-            "away": "TUN",
-            "kickoff": "2026-06-15T02:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "F",
-            "matchday": 1
-        },
-        "537369": {
+        "428753": {
             "home": "ESP",
-            "away": "CPV",
-            "kickoff": "2026-06-15T16:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "H",
-            "matchday": 1
-        },
-        "537363": {
-            "home": "BEL",
-            "away": "EGY",
-            "kickoff": "2026-06-15T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "G",
-            "matchday": 1
-        },
-        "537370": {
-            "home": "KSA",
-            "away": "URY",
-            "kickoff": "2026-06-15T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "H",
-            "matchday": 1
-        },
-        "537364": {
-            "home": "IRN",
-            "away": "NZL",
-            "kickoff": "2026-06-16T01:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "G",
-            "matchday": 1
-        },
-        "537391": {
-            "home": "FRA",
-            "away": "SEN",
-            "kickoff": "2026-06-16T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "I",
-            "matchday": 1
-        },
-        "537392": {
-            "home": "IRQ",
-            "away": "NOR",
-            "kickoff": "2026-06-16T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "I",
-            "matchday": 1
-        },
-        "537397": {
-            "home": "ARG",
-            "away": "ALG",
-            "kickoff": "2026-06-17T01:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "J",
-            "matchday": 1
-        },
-        "537398": {
-            "home": "AUT",
-            "away": "JOR",
-            "kickoff": "2026-06-17T04:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "J",
-            "matchday": 1
-        },
-        "537403": {
-            "home": "POR",
-            "away": "COD",
-            "kickoff": "2026-06-17T17:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "K",
-            "matchday": 1
-        },
-        "537409": {
-            "home": "ENG",
             "away": "CRO",
-            "kickoff": "2026-06-17T20:00:00Z",
-            "status": "TIMED",
+            "kickoff": "2024-06-15T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 3,
+                "away": 0
             },
             "stage": "GROUP_STAGE",
-            "group": "L",
+            "group": "B",
             "matchday": 1
         },
-        "537410": {
-            "home": "GHA",
-            "away": "PAN",
-            "kickoff": "2026-06-17T23:00:00Z",
-            "status": "TIMED",
+        "428752": {
+            "home": "ITA",
+            "away": "ALB",
+            "kickoff": "2024-06-15T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 1
             },
             "stage": "GROUP_STAGE",
-            "group": "L",
+            "group": "B",
             "matchday": 1
         },
-        "537404": {
-            "home": "UZB",
-            "away": "COL",
-            "kickoff": "2026-06-18T02:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "K",
-            "matchday": 1
-        },
-        "537329": {
-            "home": "CZE",
-            "away": "RSA",
-            "kickoff": "2026-06-18T16:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "A",
-            "matchday": 2
-        },
-        "537335": {
-            "home": "SUI",
-            "away": "BIH",
-            "kickoff": "2026-06-18T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "B",
-            "matchday": 2
-        },
-        "537336": {
-            "home": "CAN",
-            "away": "QAT",
-            "kickoff": "2026-06-18T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "B",
-            "matchday": 2
-        },
-        "537330": {
-            "home": "MEX",
-            "away": "KOR",
-            "kickoff": "2026-06-19T01:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "A",
-            "matchday": 2
-        },
-        "537348": {
-            "home": "USA",
-            "away": "AUS",
-            "kickoff": "2026-06-19T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "D",
-            "matchday": 2
-        },
-        "537342": {
-            "home": "SCO",
-            "away": "MAR",
-            "kickoff": "2026-06-19T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "C",
-            "matchday": 2
-        },
-        "537341": {
-            "home": "BRA",
-            "away": "HAI",
-            "kickoff": "2026-06-20T00:30:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "C",
-            "matchday": 2
-        },
-        "537347": {
-            "home": "TUR",
-            "away": "PAR",
-            "kickoff": "2026-06-20T03:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "D",
-            "matchday": 2
-        },
-        "537359": {
-            "home": "NED",
-            "away": "SWE",
-            "kickoff": "2026-06-20T17:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "F",
-            "matchday": 2
-        },
-        "537353": {
-            "home": "GER",
-            "away": "CIV",
-            "kickoff": "2026-06-20T20:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "E",
-            "matchday": 2
-        },
-        "537354": {
-            "home": "ECU",
-            "away": "CUR",
-            "kickoff": "2026-06-21T00:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "E",
-            "matchday": 2
-        },
-        "537360": {
-            "home": "TUN",
-            "away": "JPN",
-            "kickoff": "2026-06-21T04:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "F",
-            "matchday": 2
-        },
-        "537371": {
-            "home": "ESP",
-            "away": "KSA",
-            "kickoff": "2026-06-21T16:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "H",
-            "matchday": 2
-        },
-        "537365": {
-            "home": "BEL",
-            "away": "IRN",
-            "kickoff": "2026-06-21T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "G",
-            "matchday": 2
-        },
-        "537372": {
-            "home": "URY",
-            "away": "CPV",
-            "kickoff": "2026-06-21T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "H",
-            "matchday": 2
-        },
-        "537366": {
-            "home": "NZL",
-            "away": "EGY",
-            "kickoff": "2026-06-22T01:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "G",
-            "matchday": 2
-        },
-        "537399": {
-            "home": "ARG",
-            "away": "AUT",
-            "kickoff": "2026-06-22T17:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "J",
-            "matchday": 2
-        },
-        "537393": {
-            "home": "FRA",
-            "away": "IRQ",
-            "kickoff": "2026-06-22T21:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "I",
-            "matchday": 2
-        },
-        "537394": {
-            "home": "NOR",
-            "away": "SEN",
-            "kickoff": "2026-06-23T00:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "I",
-            "matchday": 2
-        },
-        "537400": {
-            "home": "JOR",
-            "away": "ALG",
-            "kickoff": "2026-06-23T03:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "J",
-            "matchday": 2
-        },
-        "537405": {
-            "home": "POR",
-            "away": "UZB",
-            "kickoff": "2026-06-23T17:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "K",
-            "matchday": 2
-        },
-        "537411": {
-            "home": "ENG",
-            "away": "GHA",
-            "kickoff": "2026-06-23T20:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "L",
-            "matchday": 2
-        },
-        "537412": {
-            "home": "PAN",
-            "away": "CRO",
-            "kickoff": "2026-06-23T23:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "L",
-            "matchday": 2
-        },
-        "537406": {
-            "home": "COL",
-            "away": "COD",
-            "kickoff": "2026-06-24T02:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "K",
-            "matchday": 2
-        },
-        "537337": {
-            "home": "SUI",
-            "away": "CAN",
-            "kickoff": "2026-06-24T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "B",
-            "matchday": 3
-        },
-        "537338": {
-            "home": "BIH",
-            "away": "QAT",
-            "kickoff": "2026-06-24T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "B",
-            "matchday": 3
-        },
-        "537344": {
-            "home": "MAR",
-            "away": "HAI",
-            "kickoff": "2026-06-24T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "C",
-            "matchday": 3
-        },
-        "537343": {
-            "home": "SCO",
-            "away": "BRA",
-            "kickoff": "2026-06-24T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "C",
-            "matchday": 3
-        },
-        "537331": {
-            "home": "CZE",
-            "away": "MEX",
-            "kickoff": "2026-06-25T01:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "A",
-            "matchday": 3
-        },
-        "537332": {
-            "home": "RSA",
-            "away": "KOR",
-            "kickoff": "2026-06-25T01:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "A",
-            "matchday": 3
-        },
-        "537355": {
-            "home": "ECU",
-            "away": "GER",
-            "kickoff": "2026-06-25T20:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "E",
-            "matchday": 3
-        },
-        "537356": {
-            "home": "CUR",
-            "away": "CIV",
-            "kickoff": "2026-06-25T20:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "E",
-            "matchday": 3
-        },
-        "537361": {
-            "home": "TUN",
+        "428765": {
+            "home": "POL",
             "away": "NED",
-            "kickoff": "2026-06-25T23:00:00Z",
-            "status": "TIMED",
+            "kickoff": "2024-06-16T13:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "F",
-            "matchday": 3
-        },
-        "537362": {
-            "home": "JPN",
-            "away": "SWE",
-            "kickoff": "2026-06-25T23:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "F",
-            "matchday": 3
-        },
-        "537349": {
-            "home": "TUR",
-            "away": "USA",
-            "kickoff": "2026-06-26T02:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 2
             },
             "stage": "GROUP_STAGE",
             "group": "D",
-            "matchday": 3
+            "matchday": 1
         },
-        "537350": {
-            "home": "PAR",
-            "away": "AUS",
-            "kickoff": "2026-06-26T02:00:00Z",
-            "status": "TIMED",
+        "428758": {
+            "home": "SVN",
+            "away": "DEN",
+            "kickoff": "2024-06-16T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 1
             },
             "stage": "GROUP_STAGE",
-            "group": "D",
-            "matchday": 3
+            "group": "C",
+            "matchday": 1
         },
-        "537395": {
-            "home": "NOR",
-            "away": "FRA",
-            "kickoff": "2026-06-26T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "I",
-            "matchday": 3
-        },
-        "537396": {
-            "home": "SEN",
-            "away": "IRQ",
-            "kickoff": "2026-06-26T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "I",
-            "matchday": 3
-        },
-        "537373": {
-            "home": "URY",
-            "away": "ESP",
-            "kickoff": "2026-06-27T00:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "H",
-            "matchday": 3
-        },
-        "537374": {
-            "home": "CPV",
-            "away": "KSA",
-            "kickoff": "2026-06-27T00:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "H",
-            "matchday": 3
-        },
-        "537367": {
-            "home": "NZL",
-            "away": "BEL",
-            "kickoff": "2026-06-27T03:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "G",
-            "matchday": 3
-        },
-        "537368": {
-            "home": "EGY",
-            "away": "IRN",
-            "kickoff": "2026-06-27T03:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "GROUP_STAGE",
-            "group": "G",
-            "matchday": 3
-        },
-        "537413": {
-            "home": "PAN",
+        "428759": {
+            "home": "SRB",
             "away": "ENG",
-            "kickoff": "2026-06-27T21:00:00Z",
-            "status": "TIMED",
+            "kickoff": "2024-06-16T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 0,
+                "away": 1
             },
             "stage": "GROUP_STAGE",
-            "group": "L",
-            "matchday": 3
+            "group": "C",
+            "matchday": 1
         },
-        "537414": {
+        "428770": {
+            "home": "ROU",
+            "away": "UKR",
+            "kickoff": "2024-06-17T13:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 3,
+                "away": 0
+            },
+            "stage": "GROUP_STAGE",
+            "group": "E",
+            "matchday": 1
+        },
+        "428771": {
+            "home": "BEL",
+            "away": "SVK",
+            "kickoff": "2024-06-17T16:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 0,
+                "away": 1
+            },
+            "stage": "GROUP_STAGE",
+            "group": "E",
+            "matchday": 1
+        },
+        "428764": {
+            "home": "AUT",
+            "away": "FRA",
+            "kickoff": "2024-06-17T19:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 0,
+                "away": 1
+            },
+            "stage": "GROUP_STAGE",
+            "group": "D",
+            "matchday": 1
+        },
+        "428776": {
+            "home": "TUR",
+            "away": "GEO",
+            "kickoff": "2024-06-18T16:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 3,
+                "away": 1
+            },
+            "stage": "GROUP_STAGE",
+            "group": "F",
+            "matchday": 1
+        },
+        "428777": {
+            "home": "POR",
+            "away": "CZE",
+            "kickoff": "2024-06-18T19:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 2,
+                "away": 1
+            },
+            "stage": "GROUP_STAGE",
+            "group": "F",
+            "matchday": 1
+        },
+        "428751": {
             "home": "CRO",
-            "away": "GHA",
-            "kickoff": "2026-06-27T21:00:00Z",
-            "status": "TIMED",
+            "away": "ALB",
+            "kickoff": "2024-06-19T13:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 2
             },
             "stage": "GROUP_STAGE",
-            "group": "L",
-            "matchday": 3
+            "group": "B",
+            "matchday": 2
         },
-        "537407": {
-            "home": "COL",
-            "away": "POR",
-            "kickoff": "2026-06-27T23:30:00Z",
-            "status": "TIMED",
+        "428744": {
+            "home": "GER",
+            "away": "HUN",
+            "kickoff": "2024-06-19T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 0
             },
             "stage": "GROUP_STAGE",
-            "group": "K",
-            "matchday": 3
+            "group": "A",
+            "matchday": 2
         },
-        "537408": {
-            "home": "COD",
-            "away": "UZB",
-            "kickoff": "2026-06-27T23:30:00Z",
-            "status": "TIMED",
+        "428745": {
+            "home": "SCO",
+            "away": "SUI",
+            "kickoff": "2024-06-19T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 1
             },
             "stage": "GROUP_STAGE",
-            "group": "K",
-            "matchday": 3
+            "group": "A",
+            "matchday": 2
         },
-        "537401": {
-            "home": "JOR",
-            "away": "ARG",
-            "kickoff": "2026-06-28T02:00:00Z",
-            "status": "TIMED",
+        "428756": {
+            "home": "SVN",
+            "away": "SRB",
+            "kickoff": "2024-06-20T13:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 1
             },
             "stage": "GROUP_STAGE",
-            "group": "J",
-            "matchday": 3
+            "group": "C",
+            "matchday": 2
         },
-        "537402": {
-            "home": "ALG",
+        "428757": {
+            "home": "DEN",
+            "away": "ENG",
+            "kickoff": "2024-06-20T16:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 1,
+                "away": 1
+            },
+            "stage": "GROUP_STAGE",
+            "group": "C",
+            "matchday": 2
+        },
+        "428750": {
+            "home": "ESP",
+            "away": "ITA",
+            "kickoff": "2024-06-20T19:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 1,
+                "away": 0
+            },
+            "stage": "GROUP_STAGE",
+            "group": "B",
+            "matchday": 2
+        },
+        "428769": {
+            "home": "SVK",
+            "away": "UKR",
+            "kickoff": "2024-06-21T13:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 1,
+                "away": 2
+            },
+            "stage": "GROUP_STAGE",
+            "group": "E",
+            "matchday": 2
+        },
+        "428763": {
+            "home": "POL",
             "away": "AUT",
-            "kickoff": "2026-06-28T02:00:00Z",
-            "status": "TIMED",
+            "kickoff": "2024-06-21T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 3
             },
             "stage": "GROUP_STAGE",
-            "group": "J",
+            "group": "D",
+            "matchday": 2
+        },
+        "428762": {
+            "home": "NED",
+            "away": "FRA",
+            "kickoff": "2024-06-21T19:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 0,
+                "away": 0
+            },
+            "stage": "GROUP_STAGE",
+            "group": "D",
+            "matchday": 2
+        },
+        "428775": {
+            "home": "GEO",
+            "away": "CZE",
+            "kickoff": "2024-06-22T13:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 1,
+                "away": 1
+            },
+            "stage": "GROUP_STAGE",
+            "group": "F",
+            "matchday": 2
+        },
+        "428774": {
+            "home": "TUR",
+            "away": "POR",
+            "kickoff": "2024-06-22T16:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 0,
+                "away": 3
+            },
+            "stage": "GROUP_STAGE",
+            "group": "F",
+            "matchday": 2
+        },
+        "428768": {
+            "home": "BEL",
+            "away": "ROU",
+            "kickoff": "2024-06-22T19:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 2,
+                "away": 0
+            },
+            "stage": "GROUP_STAGE",
+            "group": "E",
+            "matchday": 2
+        },
+        "428742": {
+            "home": "SCO",
+            "away": "HUN",
+            "kickoff": "2024-06-23T19:00:00Z",
+            "status": "FINISHED",
+            "score": {
+                "home": 0,
+                "away": 1
+            },
+            "stage": "GROUP_STAGE",
+            "group": "A",
             "matchday": 3
         },
-        "537417": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-06-28T19:00:00Z",
-            "status": "TIMED",
+        "428743": {
+            "home": "SUI",
+            "away": "GER",
+            "kickoff": "2024-06-23T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 1
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "A",
+            "matchday": 3
         },
-        "537423": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-06-29T17:00:00Z",
-            "status": "TIMED",
+        "428748": {
+            "home": "ALB",
+            "away": "ESP",
+            "kickoff": "2024-06-24T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 0,
+                "away": 1
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "B",
+            "matchday": 3
         },
-        "537415": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-06-29T20:30:00Z",
-            "status": "TIMED",
+        "428749": {
+            "home": "CRO",
+            "away": "ITA",
+            "kickoff": "2024-06-24T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 1
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "B",
+            "matchday": 3
         },
-        "537418": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-06-30T01:00:00Z",
-            "status": "TIMED",
+        "428760": {
+            "home": "FRA",
+            "away": "POL",
+            "kickoff": "2024-06-25T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 1
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "D",
+            "matchday": 3
         },
-        "537424": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-06-30T17:00:00Z",
-            "status": "TIMED",
+        "428761": {
+            "home": "NED",
+            "away": "AUT",
+            "kickoff": "2024-06-25T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 3
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "D",
+            "matchday": 3
         },
-        "537416": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-06-30T21:00:00Z",
-            "status": "TIMED",
+        "428754": {
+            "home": "DEN",
+            "away": "SRB",
+            "kickoff": "2024-06-25T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 0,
+                "away": 0
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "C",
+            "matchday": 3
         },
-        "537425": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-01T01:00:00Z",
-            "status": "TIMED",
+        "428755": {
+            "home": "ENG",
+            "away": "SVN",
+            "kickoff": "2024-06-25T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 0,
+                "away": 0
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "C",
+            "matchday": 3
         },
-        "537426": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-01T16:00:00Z",
-            "status": "TIMED",
+        "428766": {
+            "home": "UKR",
+            "away": "BEL",
+            "kickoff": "2024-06-26T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 0,
+                "away": 0
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "E",
+            "matchday": 3
         },
-        "537422": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-01T20:00:00Z",
-            "status": "TIMED",
+        "428767": {
+            "home": "SVK",
+            "away": "ROU",
+            "kickoff": "2024-06-26T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 1
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "E",
+            "matchday": 3
         },
-        "537421": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-02T00:00:00Z",
-            "status": "TIMED",
+        "428772": {
+            "home": "CZE",
+            "away": "TUR",
+            "kickoff": "2024-06-26T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 2
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "F",
+            "matchday": 3
         },
-        "537420": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-02T19:00:00Z",
-            "status": "TIMED",
+        "428773": {
+            "home": "GEO",
+            "away": "POR",
+            "kickoff": "2024-06-26T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 0
             },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
+            "stage": "GROUP_STAGE",
+            "group": "F",
+            "matchday": 3
         },
-        "537419": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-02T23:00:00Z",
-            "status": "TIMED",
+        "428791": {
+            "home": "SUI",
+            "away": "ITA",
+            "kickoff": "2024-06-29T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
-        },
-        "537429": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-03T03:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
-        },
-        "537428": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-03T18:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
-        },
-        "537427": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-03T22:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
-        },
-        "537430": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-04T01:30:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "LAST_32",
-            "group": null,
-            "matchday": null
-        },
-        "537376": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-04T17:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 0
             },
             "stage": "LAST_16",
             "group": null,
-            "matchday": null
+            "matchday": 4
         },
-        "537375": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-04T21:00:00Z",
-            "status": "TIMED",
+        "428792": {
+            "home": "GER",
+            "away": "DEN",
+            "kickoff": "2024-06-29T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 0
             },
             "stage": "LAST_16",
             "group": null,
-            "matchday": null
+            "matchday": 4
         },
-        "537377": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-05T20:00:00Z",
-            "status": "TIMED",
+        "428789": {
+            "home": "ENG",
+            "away": "SVK",
+            "kickoff": "2024-06-30T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 1
             },
             "stage": "LAST_16",
             "group": null,
-            "matchday": null
+            "matchday": 4
         },
-        "537378": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-06T00:00:00Z",
-            "status": "TIMED",
+        "428790": {
+            "home": "ESP",
+            "away": "GEO",
+            "kickoff": "2024-06-30T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 4,
+                "away": 1
             },
             "stage": "LAST_16",
             "group": null,
-            "matchday": null
+            "matchday": 4
         },
-        "537379": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-06T19:00:00Z",
-            "status": "TIMED",
+        "428787": {
+            "home": "FRA",
+            "away": "BEL",
+            "kickoff": "2024-07-01T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 0
             },
             "stage": "LAST_16",
             "group": null,
-            "matchday": null
+            "matchday": 4
         },
-        "537380": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-07T00:00:00Z",
-            "status": "TIMED",
+        "428788": {
+            "home": "POR",
+            "away": "SVN",
+            "kickoff": "2024-07-01T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 3,
+                "away": 0
             },
             "stage": "LAST_16",
             "group": null,
-            "matchday": null
+            "matchday": 4
         },
-        "537381": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-07T16:00:00Z",
-            "status": "TIMED",
+        "428786": {
+            "home": "ROU",
+            "away": "NED",
+            "kickoff": "2024-07-02T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 0,
+                "away": 3
             },
             "stage": "LAST_16",
             "group": null,
-            "matchday": null
+            "matchday": 4
         },
-        "537382": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-07T20:00:00Z",
-            "status": "TIMED",
+        "428785": {
+            "home": "AUT",
+            "away": "TUR",
+            "kickoff": "2024-07-02T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 2
             },
             "stage": "LAST_16",
             "group": null,
-            "matchday": null
+            "matchday": 4
         },
-        "537383": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-09T20:00:00Z",
-            "status": "TIMED",
+        "495401": {
+            "home": "ESP",
+            "away": "GER",
+            "kickoff": "2024-07-05T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 1
             },
             "stage": "QUARTER_FINALS",
             "group": null,
-            "matchday": null
+            "matchday": 5
         },
-        "537384": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-10T19:00:00Z",
-            "status": "TIMED",
+        "495402": {
+            "home": "POR",
+            "away": "FRA",
+            "kickoff": "2024-07-05T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 3,
+                "away": 5
             },
             "stage": "QUARTER_FINALS",
             "group": null,
-            "matchday": null
+            "matchday": 5
         },
-        "537385": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-11T21:00:00Z",
-            "status": "TIMED",
+        "495403": {
+            "home": "ENG",
+            "away": "SUI",
+            "kickoff": "2024-07-06T16:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 6,
+                "away": 4
             },
             "stage": "QUARTER_FINALS",
             "group": null,
-            "matchday": null
+            "matchday": 5
         },
-        "537386": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-12T01:00:00Z",
-            "status": "TIMED",
+        "495404": {
+            "home": "NED",
+            "away": "TUR",
+            "kickoff": "2024-07-06T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 1
             },
             "stage": "QUARTER_FINALS",
             "group": null,
-            "matchday": null
+            "matchday": 5
         },
-        "537387": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-14T19:00:00Z",
-            "status": "TIMED",
+        "428780": {
+            "home": "ESP",
+            "away": "FRA",
+            "kickoff": "2024-07-09T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 1
             },
             "stage": "SEMI_FINALS",
             "group": null,
-            "matchday": null
+            "matchday": 6
         },
-        "537388": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-15T19:00:00Z",
-            "status": "TIMED",
+        "428779": {
+            "home": "NED",
+            "away": "ENG",
+            "kickoff": "2024-07-10T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
+                "home": 1,
+                "away": 2
             },
             "stage": "SEMI_FINALS",
             "group": null,
-            "matchday": null
+            "matchday": 6
         },
-        "537389": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-18T21:00:00Z",
-            "status": "TIMED",
+        "428778": {
+            "home": "ESP",
+            "away": "ENG",
+            "kickoff": "2024-07-14T19:00:00Z",
+            "status": "FINISHED",
             "score": {
-                "home": null,
-                "away": null
-            },
-            "stage": "THIRD_PLACE",
-            "group": null,
-            "matchday": null
-        },
-        "537390": {
-            "home": null,
-            "away": null,
-            "kickoff": "2026-07-19T19:00:00Z",
-            "status": "TIMED",
-            "score": {
-                "home": null,
-                "away": null
+                "home": 2,
+                "away": 1
             },
             "stage": "FINAL",
             "group": null,
-            "matchday": null
+            "matchday": 7
         }
     },
     "knockout": {
