@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from datetime import datetime, timezone
 from api_client import get_matches, get_competition
+from pprint import pprint
 
 def parse_matches(rawlist):
     matches_key = {}
@@ -33,8 +34,8 @@ def build_standings(parsed_matches):
             away_score = match['score']['away']
             group_letter = match['group']
             groups.setdefault(group_letter, {"teams": {}})
-            groups[group_letter]['teams'].setdefault(home, {'played': 0, 'W': 0, 'D': 0 , 'L': 0, 'GF': 0, 'GA': 0, 'GD': 0, 'pts': 0})
-            groups[group_letter]['teams'].setdefault(away, {'played': 0, 'W': 0, 'D': 0 , 'L': 0, 'GF': 0, 'GA': 0, 'GD': 0, 'pts': 0})
+            groups[group_letter]['teams'].setdefault(home, {'tla': home, 'played': 0, 'W': 0, 'D': 0 , 'L': 0, 'GF': 0, 'GA': 0, 'GD': 0, 'pts': 0})
+            groups[group_letter]['teams'].setdefault(away, {'tla': away, 'played': 0, 'W': 0, 'D': 0 , 'L': 0, 'GF': 0, 'GA': 0, 'GD': 0, 'pts': 0})
             groups[group_letter]['teams'][home]['played'] += 1
             groups[group_letter]['teams'][away]['played'] += 1
             groups[group_letter]['teams'][home]['GF'] += home_score
@@ -87,9 +88,14 @@ def load_tournament(path: str = 'data/tournament.json'):
     with open(path) as f:
         return json.load(f)
 
+def get_group_table(tournament:dict, letter: str):
+    teams = tournament['groups'][letter]['teams']
+    sorted_teams = sorted(teams.values(), key=lambda x: (-x['pts'], -x['GD'], -x['GF']))
+    return sorted_teams
+
 
 if __name__ == "__main__":
-    loaded = load_tournament()
-    print(loaded['competition'])
-    print(loaded['last_updated'])
-    print(len(loaded['matches']))
+    save_tournament(build_tournament(parse_matches(get_matches()), get_competition()), 'data/tournament.json')
+    loaded = load_tournament('data/tournament.json')
+    loaded = load_tournament('data/tournament.json')
+    pprint(get_group_table(loaded, 'A'))
