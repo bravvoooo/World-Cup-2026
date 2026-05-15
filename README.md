@@ -14,7 +14,7 @@ Requires Python 3.11+.
 
 ```powershell
 # Clone
-git clone https://github.com/<your-username>/wc2026.git
+git clone https://github.com/bravvoooo/wc2026.git
 cd wc2026
 
 # Create + activate virtual environment (Windows / PowerShell)
