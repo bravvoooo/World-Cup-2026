@@ -39,7 +39,7 @@ def _fetch_from_api(endpoint_path: str):
         time.sleep(retry_after)
         response = _do_get(url, headers)
         if response.status_code == 429:
-            raise requests.exceptions.HTTPError
+            raise requests.exceptions.HTTPError(f"429 after retry from {url}")
     if response.status_code == requests.codes.not_found:  # 404 means resource doesn't exist — caller decides UX, so return None
         return None
     response.raise_for_status()
@@ -78,12 +78,3 @@ def get_matches():
     """Get the matches for the World Cup"""
     response = _get_with_cache(cache_key="matches_wc", ttl_seconds=900, endpoint_path="competitions/WC/matches")
     return response['matches']
-
-def get_standings():
-    """Get the standings for the World Cup"""
-    return _get_with_cache(cache_key="standings_wc", ttl_seconds=900, endpoint_path="competitions/WC/standings")
-
-if __name__ == "__main__":
-    result = get_matches()
-    first_item = result.get("matches", [None])[0]
-    print(first_item)

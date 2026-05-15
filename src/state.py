@@ -1,8 +1,7 @@
 import json
 from pathlib import Path
-from datetime import datetime, timezone, date, UTC
+from datetime import datetime, timezone, date
 from api_client import get_matches, get_competition
-from pprint import pprint
 from zoneinfo import ZoneInfo
 
 def parse_matches(rawlist):
@@ -100,7 +99,7 @@ def get_team(tournament: dict, country_code: str):
             return group['teams'][country_code]
     raise KeyError(f'Team {country_code} not found in tournament.')
 
-def get_today(tournament: dict, todays_date: date = None):
+def get_todays_matches(tournament: dict, todays_date: date | None = None):
     if todays_date is None:
         todays_date = datetime.now(ZoneInfo('America/New_York')).date()
     keepers = []
@@ -114,7 +113,11 @@ def get_today(tournament: dict, todays_date: date = None):
     keepers.sort(key=lambda x: x[1])
     return keepers
 
+def regenerate_tournament():
+    save_tournament(
+        build_tournament(parse_matches(get_matches()), get_competition()),
+        'data/tournament.json'
+    )
+
 if __name__ == "__main__":
-#    save_tournament(build_tournament(parse_matches(get_matches()), get_competition()), 'data/tournament.json')
-    loaded = load_tournament('data/tournament.json')
-    print(get_today(loaded, date(2024, 7, 2)))
+    regenerate_tournament()
