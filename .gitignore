@@ -5,3 +5,4 @@ __pycache__/
 data/
 World Cup Project/
 .obsidian/
+*_spec.md
