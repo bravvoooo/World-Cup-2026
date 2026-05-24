@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 from datetime import datetime, timezone, date
-from api_client import get_matches, get_competition
+from .api_client import get_matches, get_competition
 from zoneinfo import ZoneInfo
 
 def parse_matches(rawlist):
@@ -20,7 +20,7 @@ def parse_matches(rawlist):
     return matches_key
 
 def print_group_matches(parsed_matches, group_letter: str):
-    for match_id, match in parsed_matches.items():
+    for _, match in parsed_matches.items():
         if match['group'] == group_letter:
             print(match['home'], match['away'], match['kickoff'], match['score'], match['matchday'])
 
@@ -88,7 +88,7 @@ def load_tournament(path: str = 'data/tournament.json'):
     with open(path) as f:
         return json.load(f)
 
-def get_group_table(tournament:dict, letter: str):
+def get_group_table(tournament: dict, letter: str):
     teams = tournament['groups'][letter]['teams']
     sorted_teams = sorted(teams.values(), key=lambda x: (-x['pts'], -x['GD'], -x['GF']))
     return sorted_teams

@@ -1,5 +1,5 @@
 import sys
-from state import get_group_table, load_tournament, get_todays_matches
+from .state import get_group_table, load_tournament, get_todays_matches
 
 USAGE = """Usage:
     python main.py standings <group_letter>
