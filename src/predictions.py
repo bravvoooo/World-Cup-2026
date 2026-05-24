@@ -1,6 +1,7 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from scoring import DEFAULT_RULES
+from scoring import score_prediction, DEFAULT_RULES
+from state import load_tournament
 
 def submit_prediction(user_id, match_id, home, away, tournament, prediction, now=None):
     # Setup
@@ -32,3 +33,19 @@ def lock_predictions_for_match(match_id: str, predictions: dict):
         if match_id in preds:
             preds[match_id]['locked'] = True
     return predictions
+
+def score_match_predictions(match_id, predictions, tournament, rules=DEFAULT_RULES):
+    match = tournament['matches'][match_id]
+    if match['status'] != 'FINISHED':
+        return predictions
+    actual = match['score']
+    users = predictions.get('users', {})
+    for _, user_data in users.items():
+        preds = user_data.get('predictions', {})
+        if match_id in preds:
+            pred = preds[match_id]
+            predicted = {'home': pred['home_score'], 'away': pred['away_score']}
+            result = score_prediction(predicted, actual, rules)
+            pred.update(points_earned=result['points'], scoring_breakdown=result['breakdown'])
+    return predictions
+
