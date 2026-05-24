@@ -1,7 +1,7 @@
 import os 
 import time
 import json
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 import requests
 from dotenv import load_dotenv
 from pathlib import Path
