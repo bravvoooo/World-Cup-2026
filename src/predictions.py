@@ -1,7 +1,9 @@
+import json
+from pathlib import Path
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from scoring import score_prediction, DEFAULT_RULES
-from state import load_tournament
+from .scoring import score_prediction, DEFAULT_RULES
+from .state import load_tournament
 
 def submit_prediction(user_id, match_id, home, away, tournament, prediction, now=None):
     # Setup
@@ -49,3 +51,26 @@ def score_match_predictions(match_id, predictions, tournament, rules=DEFAULT_RUL
             pred.update(points_earned=result['points'], scoring_breakdown=result['breakdown'])
     return predictions
 
+def save_predictions(predictions, path='data/predictions.json'):
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    with open(path, 'w') as file:
+        json.dump(predictions, file, indent=4)
+
+def load_predictions(path: str = 'data/predictions.json'):
+    if Path(path).exists():
+        with open(path) as f:
+            return json.load(f)
+    return {'users': {}}
+
+def get_leaderboard(predictions=None):
+    if predictions is None:
+        predictions = load_predictions()
+    leaderboard = []
+    for user_id, user_data in predictions['users'].items():
+        total_points = _get_total_points(user_data)
+        user_score =  {'username': user_data['username'], 'points_earned': total_points}
+        leaderboard.append(user_score)
+    return sorted(leaderboard, key=lambda x: x['points_earned'], reverse=True)
+
+def _get_total_points(user_data):
+    return sum(pick.get('points_earned', 0) for pick in user_data['predictions'].values())

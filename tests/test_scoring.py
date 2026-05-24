@@ -1,4 +1,5 @@
 from src.scoring import score_prediction
+from src.predictions import save_predictions, load_predictions, get_leaderboard
 
 def test_score_prediction():
     predicted = {"home": 2, "away": 0}
@@ -56,3 +57,39 @@ def test_correct_winner_but_wrong_score():
     assert result['points'] == 2 
     assert result['breakdown'] == {"exact": False, "result": True, "gd": False, "tier_awarded": "correct_result"}
 
+def test_save_load_round_trip(tmp_path):
+    fixture = {
+        "users": {
+            "456": {
+                "username": "isaac",
+                "joined_at": "2026-05-20T10:00:00Z",
+                "total_points": 5,
+                "predictions": {
+                    "match_id_12345": {
+                        "home_score": 2,
+                        "away_score": 1,
+                        "submitted_at": "2026-06-12T19:45:00Z",
+                        "locked": True,
+                        "points_earned": 5,
+                        "scoring_breakdown": {"exact": True, "result": True, "gd": True},
+                    }
+                },
+            }
+        }
+    }
+    path = tmp_path / "predictions.json"
+    save_predictions(fixture, path)
+    loaded = load_predictions(path)
+    assert loaded == fixture
+
+def test_leaderboard_orders_by_points(predictions=None):
+    fixture = {"users": {
+        "1": {"username": "alice", "predictions": {
+            "m1": {"points_earned": 5}, "m2": {"points_earned": 2}}},   # 7
+        "2": {"username": "bob", "predictions": {
+            "m1": {"points_earned": 5}, "m2": {"points_earned": 5}}},   # 10
+    }}
+    result = get_leaderboard(predictions=fixture)
+    assert result[0]['username'] == 'bob'   # highest first
+    assert result[0]['points_earned'] == 10
+    assert result[1]['points_earned'] == 7
