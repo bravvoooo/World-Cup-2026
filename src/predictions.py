@@ -1,5 +1,6 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from scoring import DEFAULT_RULES
 
 def submit_prediction(user_id, match_id, home, away, tournament, prediction, now=None):
     # Setup
@@ -19,7 +20,15 @@ def submit_prediction(user_id, match_id, home, away, tournament, prediction, now
             'home_score': home, 'away_score': away,
             'submitted_at': now.isoformat(),
             'locked': False
-        }
+            }
     prediction['users'].setdefault(user_id, {'predictions': {}})
     prediction['users'][user_id]['predictions'][match_id] = pred 
     return prediction
+
+def lock_predictions_for_match(match_id: str, predictions: dict):
+    users = predictions.get('users', {})
+    for _, user_data in users.items():
+        preds = user_data.get('predictions', {})
+        if match_id in preds:
+            preds[match_id]['locked'] = True
+    return predictions
