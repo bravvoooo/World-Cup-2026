@@ -1,5 +1,5 @@
 from src.scoring import score_prediction
-from src.predictions import save_predictions, load_predictions, get_leaderboard
+from src.predictions import save_predictions, load_predictions, get_leaderboard, get_user_summary
 
 def test_score_prediction():
     predicted = {"home": 2, "away": 0}
@@ -93,3 +93,22 @@ def test_leaderboard_orders_by_points(predictions=None):
     assert result[0]['username'] == 'bob'   # highest first
     assert result[0]['points_earned'] == 10
     assert result[1]['points_earned'] == 7
+
+def test_user_summary():
+    fixture = {"users": {
+        "1": {"username": "isaac", "predictions": {
+            "m1": {"points_earned": 5},   # finished, hit
+            "m2": {"points_earned": 0},   # finished, wrong
+            "m3": {"home_score": 1, "away_score": 0},  # unscored, no points_earned key
+        }},
+        "2": {"username": "newbie", "predictions": {
+            "m1": {"home_score": 2, "away_score": 1},  # unscored only
+        }},
+    }}
+    isaac = get_user_summary("1", predictions=fixture)
+    assert isaac['total_points'] == 5        # 5 + 0, unscored contributes 0
+    assert isaac['accuracy'] == 0.5          # 1 hit / 2 finished
+
+    newbie = get_user_summary("2", predictions=fixture)
+    assert newbie['total_points'] == 0
+    assert newbie['accuracy'] is None        # zero finished → guard fires

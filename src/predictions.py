@@ -74,3 +74,24 @@ def get_leaderboard(predictions=None):
 
 def _get_total_points(user_data):
     return sum(pick.get('points_earned', 0) for pick in user_data['predictions'].values())
+
+def get_user_summary(user_id, predictions=None):
+    if predictions is None:
+        predictions = load_predictions()
+    user_summary = {}
+    user_data = predictions['users'][user_id]
+    total_user_points = _get_total_points(user_data)
+    user_summary.update(total_points=total_user_points)
+    finished = 0
+    hits = 0
+    for pick in user_data['predictions'].values():
+        if 'points_earned' in pick:
+            finished += 1
+            if pick['points_earned'] > 0:
+                hits += 1
+    if finished == 0:
+        user_summary.update(accuracy=None)
+    else:
+        accuracy_rate = hits/finished
+        user_summary.update(accuracy=accuracy_rate)
+    return user_summary
