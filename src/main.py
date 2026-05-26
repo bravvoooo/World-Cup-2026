@@ -7,7 +7,7 @@ USAGE = """Usage:
     python -m src.main today
     python -m src.main predict <match_id> <prediction score>"""
 
-USER_ID = 'isaac'
+USER_ID = '1'
 
 loaded_tournament = load_tournament('data/tournament.json')
 loaded_predictions = load_predictions()
