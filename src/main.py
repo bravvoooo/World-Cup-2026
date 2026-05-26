@@ -76,6 +76,15 @@ elif command == 'predict':
     else:
         print(USAGE)
         sys.exit(1)
+elif command == 'mypicks':
+    # Match MEX v RSA: 2-1 537327
+    picks = loaded_predictions['users'][USER_ID]['predictions']
+    if not picks:
+        print('You haven\'t predicted yet')
+    else:
+        for match_id, pick in picks.items():
+            tournament = loaded_tournament['matches'][match_id]
+            print(f"Match {tournament['home']} v {tournament['away']}: {pick['home_score']}-{pick['away_score']} {match_id}")
 else:
     print(f"Unknown command: {command}")
     print(USAGE)
