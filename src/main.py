@@ -1,6 +1,6 @@
 import sys
 from .state import get_group_table, load_tournament, get_todays_matches
-from .predictions import get_leaderboard, load_predictions, submit_prediction, save_predictions, lock_predictions_for_match
+from .predictions import get_leaderboard, load_predictions, submit_prediction, save_predictions, get_user_summary
 
 USAGE = """Usage:
     python -m src.main standings <group_letter>
@@ -85,6 +85,15 @@ elif command == 'mypicks':
         for match_id, pick in picks.items():
             tournament = loaded_tournament['matches'][match_id]
             print(f"Match {tournament['home']} v {tournament['away']}: {pick['home_score']}-{pick['away_score']} {match_id}")
+elif command == 'summary':
+    # Total points : 5
+    # Accuracy : 37%
+    result = get_user_summary(USER_ID, loaded_predictions)
+    if result['accuracy'] is None:
+        result['accuracy'] = 0
+    formatted = format(result['accuracy'], '.2%')
+    print(f'Total points : {result['total_points']}')
+    print(f'Accuracy : {formatted}')
 else:
     print(f"Unknown command: {command}")
     print(USAGE)
