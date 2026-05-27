@@ -1,6 +1,7 @@
 import sys
 from .state import get_group_table, load_tournament, get_todays_matches
 from .predictions import get_leaderboard, load_predictions, submit_prediction, save_predictions, get_user_summary
+from .formatting import format_group_table, format_leaderboard, format_match_results, format_user_summary
 
 USAGE = """Usage:
     python -m src.main standings <group_letter>
@@ -28,9 +29,7 @@ if command == 'standings':
             last_char = max(loaded_tournament['groups'])
             print(f"No group '{letter}' found. Try something from {first_char}-{last_char}.")
             sys.exit(1)
-        print(f'Group {letter}')
-        for team in table:
-            print(f"{team['tla']} Played: {team['played']} W: {team['W']} D: {team['D']} L: {team['L']} GF: {team['GF']} GA: {team['GA']} GD: {team['GD']:+d} PTS: {team['pts']}")
+        print(format_group_table(table, letter))
     else:
         print(USAGE)
         sys.exit(1)
@@ -48,8 +47,7 @@ elif command == 'today':
         print(f"{match_id}  {match_data['home']} vs {match_data['away']}  {local_kickoff.strftime('%I:%M %p')}  {score_str}  Stage: {match_data['stage']}  Matchday: {match_data['matchday']}")
 elif command == 'leaderboard':
     leaderboard = get_leaderboard()
-    for user in leaderboard:
-        print(f"{user['username']} Total Points: {user['points_earned']}")
+    print(format_leaderboard(leaderboard))
 elif command == 'predict': 
     if len(sys.argv) >= 4:
         match_id = sys.argv[2]
@@ -82,18 +80,14 @@ elif command == 'mypicks':
     if not picks:
         print('You haven\'t predicted yet')
     else:
-        for match_id, pick in picks.items():
-            tournament = loaded_tournament['matches'][match_id]
-            print(f"Match {tournament['home']} v {tournament['away']}: {pick['home_score']}-{pick['away_score']} {match_id}")
+        print(format_match_results(picks, loaded_tournament))
 elif command == 'summary':
     # Total points : 5
     # Accuracy : 37%
     result = get_user_summary(USER_ID, loaded_predictions)
     if result['accuracy'] is None:
         result['accuracy'] = 0
-    formatted = format(result['accuracy'], '.2%')
-    print(f'Total points : {result['total_points']}')
-    print(f'Accuracy : {formatted}')
+    print(format_user_summary(result))
 else:
     print(f"Unknown command: {command}")
     print(USAGE)
