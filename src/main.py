@@ -6,7 +6,10 @@ from .formatting import format_group_table, format_leaderboard, format_match_res
 USAGE = """Usage:
     python -m src.main standings <group_letter>
     python -m src.main today
-    python -m src.main predict <match_id> <prediction score>"""
+    python -m src.main predict <match_id> <prediction score>
+    python -m src.main leaderboard
+    python -m src.main mypicks
+    python -m src.main summary"""
 
 USER_ID = '1'
 
