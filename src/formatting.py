@@ -1,11 +1,19 @@
-from .state import load_tournament
+def format_team(team, country_code):
+    formatted_team = []
 
+    formatted_team.append(f'{country_code}')
+    formatted_team.append(f'Played: {team['played']}')
+    formatted_team.append(f'W: {team['W']} D: {team['D']} L: {team['L']}')
+    formatted_team.append(f'GF: {team['GF']} GA: {team['GA']} GD: {team['GD']}')
+    formatted_team.append(f'Points: {team['pts']}')
+
+    return '\n'.join(formatted_team)
 
 def format_group_table(table, letter):
     formatted_table = [f'Group {letter}']
 
     for team in table:
-        formatted_table.append(f"{team['tla']} Played: {team['played']} W: {team['W']} D: {team['D']} L: {team['L']} GF: {team['GF']} GA: {team['GA']} GD: {team['GD']:+d} PTS: {team['pts']}")
+        formatted_table.append(f'{team['tla']} Played: {team['played']} W: {team['W']} D: {team['D']} L: {team['L']} GF: {team['GF']} GA: {team['GA']} GD: {team['GD']:+d} PTS: {team['pts']}')
 
     return '\n'.join(formatted_table)
 
@@ -13,7 +21,7 @@ def format_leaderboard(leaderboard):
     formatted = []
 
     for user in leaderboard:
-        formatted.append(f"{user['username']} Total Points: {user['points_earned']}")
+        formatted.append(f'{user['username']} Total Points: {user['points_earned']}')
 
     return '\n'.join(formatted)
     
@@ -22,7 +30,7 @@ def format_match_results(picks, loaded_tournament):
 
     for match_id, pick in picks.items():
         match = loaded_tournament['matches'][match_id]
-        formatted_picks.append(f"Match {match['home']} v {match['away']}: {pick['home_score']}-{pick['away_score']} {match_id}")
+        formatted_picks.append(f'Match {match['home']} v {match['away']}: {pick['home_score']}-{pick['away_score']} {match_id}')
 
     return '\n'.join(formatted_picks)
     
