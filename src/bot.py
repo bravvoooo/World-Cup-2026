@@ -3,7 +3,8 @@ import logging
 from dotenv import load_dotenv
 from telegram import Update, User
 from telegram.ext import filters, MessageHandler, ApplicationBuilder, CommandHandler, ContextTypes
-from datetime import date
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from .formatting import format_group_table, format_team, format_match_results
 from .state import load_tournament, get_group_table, get_todays_matches, get_team
 from .predictions import submit_prediction, save_predictions, get_leaderboard, load_predictions
@@ -12,12 +13,15 @@ logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
+logger = logging.getLogger(__name__)
 
 USAGE = """Usage:
     /standings <group_letter>
     /today
     /predict <match_id> <prediction score>
     /team <country_code>
+    /leaderboard
+    /summary
     """
 
 load_dotenv()
@@ -26,6 +30,11 @@ BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 application = ApplicationBuilder().token(BOT_TOKEN).build()
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = str(update.effective_user.id)
+    now = datetime.now(ZoneInfo('America/New_York'))
+    loaded_predictions = load_predictions()
+    loaded_predictions['users'].setdefault(user_id, {'username': update.effective_user.first_name, 'joined_at': now.isoformat(), 'predictions': {}})
+    save_predictions(loaded_predictions)
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
         text="Welcome — I'm your WC 2026 tracker." + '\n' + USAGE
@@ -111,6 +120,9 @@ async def mypicks(update:Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=update.effective_chat.id, text='You haven\'t predicted yet.')
         return
     await context.bot.send_message(chat_id=update.effective_chat.id, text=format_match_results(picks, loaded_tournament))
+
+async def leaderboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    d
 
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
