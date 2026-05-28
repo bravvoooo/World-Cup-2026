@@ -1,12 +1,12 @@
 import os
 import logging
 from dotenv import load_dotenv
-from telegram import Update
+from telegram import Update, User
 from telegram.ext import filters, MessageHandler, ApplicationBuilder, CommandHandler, ContextTypes
 from datetime import date
 from .formatting import format_group_table, format_team
 from .state import load_tournament, get_group_table, get_todays_matches, get_team
-
+from .predictions import submit_prediction, save_predictions, get_leaderboard, load_predictions
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -18,9 +18,7 @@ USAGE = """Usage:
     /today
     /predict <match_id> <prediction score>
     /team <country_code>
-    /leaderboard
-    /mypicks
-    /summary"""
+    """
 
 load_dotenv()
 BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
@@ -76,6 +74,35 @@ async def team(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
         await context.bot.send_message(chat_id=update.effective_chat.id, text=format_team(team, country_code))
 
+async def predict(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if len(context.args) >= 2:
+        loaded_tournament = load_tournament()
+        loaded_predictions = load_predictions()
+        match_id = context.args[0]
+        score = context.args[1]
+        score = score.split('-')
+        if len(score) != 2:
+            await context.bot.send_message(chat_id=update.effective_chat.id, text='Need exactly two values, like 1-2')
+            return
+        if not (score[0].isdigit() and score[1].isdigit()):
+            await context.bot.send_message(chat_id=update.effective_chat.id, text='Both values need to be digits.')
+            return
+        home = int(score[0])
+        away = int(score[1])
+        if home > 9 or away > 9:
+            await context.bot.send_message(chat_id=update.effective_chat.id, text='Values should be 10 or less')
+            return
+        try:
+            submitting_pred = submit_prediction( str(update.effective_user.id), match_id, home, away, loaded_tournament, loaded_predictions)
+        except (KeyError, ValueError) as e:
+           await context.bot.send_message(chat_id=update.effective_chat.id, text=e.args[0])
+           return
+        save_predictions(submitting_pred)
+        await context.bot.send_message(chat_id=update.effective_chat.id, text="Prediction saved.")
+    else:
+        await context.bot.send_message(chat_id=update.effective_chat.id, text=USAGE)
+        return
+
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
 
@@ -86,11 +113,13 @@ if __name__ == '__main__':
     start_handler = CommandHandler('start', start)
     today_handler = CommandHandler('today', today)
     team_handler = CommandHandler('team', team)
+    predict_handler = CommandHandler('predict', predict)
 
     application.add_handler(team_handler)
     application.add_handler(today_handler)
     application.add_handler(start_handler)
     application.add_handler(standings_handler)
+    application.add_handler(predict_handler)
     application.add_handler(unknown_handler)
 
     application.run_polling()
