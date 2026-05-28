@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from telegram import Update, User
 from telegram.ext import filters, MessageHandler, ApplicationBuilder, CommandHandler, ContextTypes
 from datetime import date
-from .formatting import format_group_table, format_team
+from .formatting import format_group_table, format_team, format_match_results
 from .state import load_tournament, get_group_table, get_todays_matches, get_team
 from .predictions import submit_prediction, save_predictions, get_leaderboard, load_predictions
 
@@ -103,6 +103,15 @@ async def predict(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=update.effective_chat.id, text=USAGE)
         return
 
+async def mypicks(update:Update, context: ContextTypes.DEFAULT_TYPE):
+    loaded_tournament = load_tournament()
+    loaded_predictions = load_predictions()
+    picks = loaded_predictions['users'].get(str(update.effective_user.id), {}).get('predictions', {})
+    if not picks:
+        await context.bot.send_message(chat_id=update.effective_chat.id, text='You haven\'t predicted yet.')
+        return
+    await context.bot.send_message(chat_id=update.effective_chat.id, text=format_match_results(picks, loaded_tournament))
+
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
 
@@ -114,7 +123,9 @@ if __name__ == '__main__':
     today_handler = CommandHandler('today', today)
     team_handler = CommandHandler('team', team)
     predict_handler = CommandHandler('predict', predict)
+    mypicks_handler = CommandHandler('mypicks', mypicks)
 
+    application.add_handler(mypicks_handler)
     application.add_handler(team_handler)
     application.add_handler(today_handler)
     application.add_handler(start_handler)
