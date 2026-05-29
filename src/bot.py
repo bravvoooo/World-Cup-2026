@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 from .formatting import format_group_table, format_team, format_match_results
 from .state import load_tournament, get_group_table, get_todays_matches, get_team
 from .predictions import submit_prediction, save_predictions, get_leaderboard, load_predictions
+from .scheduler import poll_matches
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -31,9 +32,11 @@ application = ApplicationBuilder().token(BOT_TOKEN).build()
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = str(update.effective_user.id)
+    first_name = update.effective_user.first_name
+    chat_id = update.message.chat_id
     now = datetime.now(ZoneInfo('America/New_York'))
     loaded_predictions = load_predictions()
-    loaded_predictions['users'].setdefault(user_id, {'username': update.effective_user.first_name, 'joined_at': now.isoformat(), 'predictions': {}})
+    loaded_predictions['users'].setdefault(user_id, {'username': first_name, 'joined_at': now.isoformat(), 'chat_id': chat_id, 'predictions': {}})
     save_predictions(loaded_predictions)
     await context.bot.send_message(
         chat_id=update.effective_chat.id,
@@ -122,7 +125,7 @@ async def mypicks(update:Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=format_match_results(picks, loaded_tournament))
 
 async def leaderboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    d
+    pass
 
 async def unknown(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, I didn't understand that command.")
@@ -137,6 +140,8 @@ if __name__ == '__main__':
     predict_handler = CommandHandler('predict', predict)
     mypicks_handler = CommandHandler('mypicks', mypicks)
 
+    application.job_queue.run_repeating(poll_matches, interval=1800, first=10)
+
     application.add_handler(mypicks_handler)
     application.add_handler(team_handler)
     application.add_handler(today_handler)
@@ -145,4 +150,4 @@ if __name__ == '__main__':
     application.add_handler(predict_handler)
     application.add_handler(unknown_handler)
 
-    application.run_polling()
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
