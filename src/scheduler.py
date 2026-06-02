@@ -2,6 +2,7 @@ import logging
 from telegram.ext import ContextTypes
 from .state import regenerate_tournament, load_tournament
 from .predictions import score_match_predictions, load_predictions, save_predictions
+from .formatting import compose_digest
 
 logger = logging.getLogger(__name__)
 
@@ -23,3 +24,12 @@ async def poll_matches(context: ContextTypes.DEFAULT_TYPE):
         score_match_predictions(match_id, predictions, new_tournament)
         logger.info('Match %s newly finished: %s %s-%s %s, scored', match_id, new_match['home'], new_match['score']['home'], new_match['score']['away'], new_match['away'])
     save_predictions(predictions)
+
+async def daily_digest(context: ContextTypes.DEFAULT_TYPE):
+    loaded_tournament = load_tournament()
+    digest = compose_digest(loaded_tournament)
+    predictions = load_predictions()
+
+    for _, user_data in predictions['users'].items():
+        chat_id = user_data['chat_id']
+        await context.bot.send_message(chat_id=chat_id, text= digest)
