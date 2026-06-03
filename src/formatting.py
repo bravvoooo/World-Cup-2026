@@ -88,3 +88,31 @@ def compose_digest(tournament, now=None):
     table_str = '\n\n'.join(table_list)
     digest = format_yesterday_matches(yesterday_matches) + '\n\n' + format_today_matches(today_matches) + '\n\n' + table_str + '\n' + str(now)
     return digest
+
+def format_match_scoring(match, user_prediction, points_earned, breakdown) -> str:
+    home = match['home']
+    away = match['away']
+    home_score = match['score']['home']
+    away_score = match['score']['away']
+    user_home = user_prediction['home_score']
+    user_away = user_prediction['away_score']
+    points = points_earned
+
+    if breakdown['tier_awarded'] == 'exact':
+        breakdown_str = 'Exact score!'
+    elif breakdown['tier_awarded'] == 'correct_result':
+        breakdown_str = 'Correct result!'
+    elif breakdown['tier_awarded'] == 'correct_gd':
+        breakdown_str = 'Correct goal difference!'
+    else:
+        breakdown_str = 'Oops, better luck next time!'
+
+    str_list = [f'{home} {home_score}-{away_score} {away}', f'Your pick: {user_home}-{user_away}', f'{breakdown_str} +{points} points']
+
+    return '\n'.join(str_list)
+
+if __name__ == '__main__':
+    match = {'home': 'MEX', 'away': 'RSA', 'score': {'home': 2, 'away': 1}}
+    user_pred = {'home_score': 2, 'away_score': 1}
+    breakdown = {'tier_awarded': 'exact'}
+    print(format_match_scoring(match, user_pred, 5, breakdown))

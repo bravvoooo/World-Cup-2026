@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from .scoring import score_prediction, DEFAULT_RULES
 from .state import load_tournament
@@ -13,7 +13,7 @@ def submit_prediction(user_id, match_id, home, away, tournament, prediction, now
         raise KeyError('The match/match id couldn\'t be found. Please check your match id.')
     match = tournament['matches'][match_id]
     kickoff = datetime.fromisoformat(match['kickoff'])
-    if now >= kickoff:
+    if now >= (kickoff - timedelta(minutes=5)):
         raise ValueError('Sorry, but you have missed the window to submit your prediction!')
     if home < 0 or away < 0:
         raise ValueError('The numbers you inputted could not be submitted')
