@@ -21,8 +21,7 @@ USAGE = """Usage:
     /today
     /predict <match_id> <prediction score>
     /team <country_code>
-    /leaderboard
-    /summary
+    /mypicks
     """
 
 load_dotenv()
