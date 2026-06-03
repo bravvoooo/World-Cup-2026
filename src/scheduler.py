@@ -1,7 +1,9 @@
 import logging
 from telegram.ext import ContextTypes
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from .state import regenerate_tournament, load_tournament
-from .predictions import score_match_predictions, load_predictions, save_predictions
+from .predictions import score_match_predictions, load_predictions, save_predictions, lock_predictions_for_match
 from .formatting import compose_digest, format_match_scoring
 
 logger = logging.getLogger(__name__)
@@ -18,6 +20,8 @@ async def poll_matches(context: ContextTypes.DEFAULT_TYPE):
             continue
         if old_match['status'] == 'FINISHED':   # already processed
             continue
+        if datetime.now(ZoneInfo('America/New_York')) >= (datetime.fromisoformat(new_tournament['matches'][match_id]['kickoff']).astimezone(ZoneInfo('America/New_York')) - timedelta(minutes=5)):
+            lock_predictions_for_match(match_id, predictions)
         if new_match['status'] != 'FINISHED':   # not done yet
             continue
         # Newly finished. Score it.
@@ -26,7 +30,7 @@ async def poll_matches(context: ContextTypes.DEFAULT_TYPE):
 
         for user_id, user_data in predictions['users'].items():
             if match_id in user_data['predictions']:
-                await send_match_scoring_message(user_id, match_id, predictions, new_tournament)
+                await _send_match_scoring_message(user_id, match_id, predictions, new_tournament)
     save_predictions(predictions)
 
 async def daily_digest(context: ContextTypes.DEFAULT_TYPE):
@@ -38,7 +42,21 @@ async def daily_digest(context: ContextTypes.DEFAULT_TYPE):
         chat_id = user_data['chat_id']
         await context.bot.send_message(chat_id=chat_id, text= digest)
 
-async def send_match_scoring_message(user_id, match_id, predictions, tournament, context: ContextTypes.DEFAULT_TYPE):
+async def pre_match_reminders(context: ContextTypes.DEFAULT_TYPE):
+    loaded_tournament = load_tournament()
+    predictions = load_predictions()
+
+    for match_id, match_data in loaded_tournament['matches'].items():
+        kickoff = datetime.fromisoformat(match_data['kickoff']).astimezone(ZoneInfo('America/New_York'))
+        now = datetime.now(ZoneInfo('America/New_York'))
+
+        if now >= kickoff - timedelta(hours=1) and now <= kickoff - timedelta(minutes=30):
+            for user_id, user_data in predictions['users'].items():
+                if match_id not in user_data['predictions']:
+                    await context.bot.send_message(chat_id=user_data['chat_id'], text=f'Reminder: {match_data['home']} vs {match_data['away']} kicks off in ~1 hour!\n Submit your prediction: /predict {match_id} <your prediction>')
+
+
+async def _send_match_scoring_message(user_id, match_id, predictions, tournament, context: ContextTypes.DEFAULT_TYPE):
     prediction = predictions['users'][user_id]['predictions'][match_id]
     match = tournament['matches'][match_id]
     points_earned = prediction['points_earned']

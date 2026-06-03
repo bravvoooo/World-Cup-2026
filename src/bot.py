@@ -1,14 +1,14 @@
 import os
 import logging
 from dotenv import load_dotenv
-from telegram import Update, User
+from telegram import Update
 from telegram.ext import filters, MessageHandler, ApplicationBuilder, CommandHandler, ContextTypes
 from datetime import datetime, time
 from zoneinfo import ZoneInfo
 from .formatting import format_group_table, format_team, format_match_results
 from .state import load_tournament, get_group_table, get_todays_matches, get_team
-from .predictions import submit_prediction, save_predictions, get_leaderboard, load_predictions
-from .scheduler import poll_matches, daily_digest
+from .predictions import submit_prediction, save_predictions,  load_predictions
+from .scheduler import poll_matches, daily_digest, pre_match_reminders
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -142,6 +142,7 @@ if __name__ == '__main__':
 
     application.job_queue.run_repeating(poll_matches, interval=1800, first=10)
     application.job_queue.run_daily(daily_digest,time=time(8, 0, 0, tzinfo=ZoneInfo('America/New_York')))
+    application.job_queue.run_repeating(pre_match_reminders, interval=1800, first=10)
 
     application.add_handler(mypicks_handler)
     application.add_handler(team_handler)
